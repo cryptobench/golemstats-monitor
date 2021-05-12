@@ -97,7 +97,7 @@ services:
       - postgres
       - webserver
     deploy:
-      replicas: 3
+      replicas: 6
       update_config:
         failure_action: rollback
         order: start-first
