@@ -5,6 +5,7 @@ from .serializers import ResponseLogSerializer
 from collector.models import ResponseLog
 
 
+@api_view(('GET'))
 def FullLog(request):
     """
     Retrieves all URL queries
