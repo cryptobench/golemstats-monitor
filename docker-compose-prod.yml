@@ -90,19 +90,12 @@ services:
     volumes:
       - './stats-monitor:/stats-monitor/'
       - './wait-for-it.sh:/wait-for-it.sh'
-      - './check_yagna.sh:/check_yagna.sh'
     env_file:
       - ./.envs/.django
     depends_on:
       - redis
       - postgres
       - webserver
-    healthcheck:
-      test: /check_yagna.sh || exit 1
-      interval: 15s
-      timeout: 5s
-      retries: 3
-      start_period: 15s
     deploy:
       replicas: 3
       update_config:
