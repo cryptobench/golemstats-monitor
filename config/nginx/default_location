@@ -1,0 +1,8 @@
+location /staticfiles/ {
+    alias /stats-monitor/static/;
+}
+
+gzip            on;
+gzip_min_length 1;
+gzip_proxied    expired no-cache no-store private auth;
+gzip_types      text/plain application/json;
