@@ -14,10 +14,18 @@ app = Celery('core')
 
 @app.on_after_finalize.connect
 def setup_periodic_tasks(sender, **kwargs):
-    from collector.tasks import NetworkUtilization, NetworkComputing, NodeDetailed, NodeComputing, NodeEarnings, NodeActivity, ProviderAverageEarnings, NetworkEarnings6h, NetworkEarnings24h, NetworkEarnings365d, NetworkOnline, NetworkOnlineStats, NetworkVersions, NetworkHistoricalStats, NodeOperator
+    from collector.tasks import NetworkUtilization, NetworkComputing, NodeDetailed, NodeComputing, NodeEarnings, NodeActivity, ProviderAverageEarnings, NetworkEarnings6h, NetworkEarnings24h, NetworkEarnings365d, NetworkOnline, NetworkOnlineStats, NetworkVersions, NetworkHistoricalStats, NodeOperator, NetworkAveragePricing, NetworkMedianPricing
     sender.add_periodic_task(
         15.0,
         NetworkUtilization.s(),
+    )
+    sender.add_periodic_task(
+        15.0,
+        NetworkAveragePricing.s(),
+    )
+    sender.add_periodic_task(
+        15.0,
+        NetworkMedianPricing.s(),
     )
     sender.add_periodic_task(
         15.0,

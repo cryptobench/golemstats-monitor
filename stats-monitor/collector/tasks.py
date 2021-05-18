@@ -152,3 +152,23 @@ def NodeOperator():
     responsecode = r.status_code
     ResponseLog.objects.create(
         ResponseTime=time, ResponseCode=responsecode, Url=url, Name="Node Operator")
+
+
+@app.task
+def NetworkAveragePricing():
+    url = "https://api.golemstats.com/v1/network/pricing/average"
+    r = requests.get(url)
+    time = r.elapsed
+    responsecode = r.status_code
+    ResponseLog.objects.create(
+        ResponseTime=time, ResponseCode=responsecode, Url=url, Name="Network Average Pricing")
+
+
+@app.task
+def NetworkMedianPricing():
+    url = "https://api.golemstats.com/v1/network/pricing/median"
+    r = requests.get(url)
+    time = r.elapsed
+    responsecode = r.status_code
+    ResponseLog.objects.create(
+        ResponseTime=time, ResponseCode=responsecode, Url=url, Name="Network Median Pricing")
