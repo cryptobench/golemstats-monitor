@@ -11,6 +11,6 @@ def FullLog(request):
     Retrieves all URL queries
     """
     if request.method == 'GET':
-        data = ResponseLog.objects.all()
+        data = ResponseLog.objects.filter(Name="Network Online")
         serializer = ResponseLogSerializer(data, many=True)
         return Response(serializer.data)
